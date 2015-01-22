@@ -1,39 +1,43 @@
-<html>
-<head>
-    <title>Returning only a string under 100 characters - PHP</title>
-</head>
-<body>
 <?php
-
 $message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
 $limit = 105;
 
-echo "Original Text: " . $message;
 
-echo "<br />";
-echo "<br />";
-
-echo stringCutting($message, $limit);
-
-function stringCutting($message, $limit)
+function detectLength($message)
 {
-    if (strlen($message) > $limit) {
-        $newMessageLength = substr($message, 0, $limit);
+    $messageLength = strlen($message);
+    return $messageLength;
+}
 
-        echo"<br />";
+function cuttingToLength($message, $limit)
+{
+    $messageLength = detectLength($message);
+//    echo $messageLength;
+//    echo PHP_EOL;
 
-        echo "From: " . $newMessageLength . "...";
+    if ($messageLength > $limit){
+        $cutMessage = substr($message, 0, $limit);
+        return $cutMessage;
 
-        echo"<br />";
-        echo"<br />";
-
-        $newLength = strrpos($newMessageLength, ' ');
-        $newLengthOutput = substr($message, 0, $newLength);
-        $finalOutput = $newLengthOutput . "...";
-        echo "Converted to :" . $finalOutput;
+    } else {
+        return $message;
     }
 }
-?>
-</body>
-</html>
+
+function detectingEndOfString ($message, $limit){
+    $cutMessage = cuttingToLength($message, $limit);
+
+    $spaceFinder = strrpos($cutMessage, ' ');
+    return $spaceFinder;
+}
+
+function correctingWord ($message, $limit){
+    $detectingEndOfString = detectingEndOfString($message, $limit);
+
+    $findEndOfString = substr($message, 0, $detectingEndOfString);
+    $finalMessage = $findEndOfString . '...';
+
+    echo $finalMessage;
+}
+
+correctingWord($message, $limit);
