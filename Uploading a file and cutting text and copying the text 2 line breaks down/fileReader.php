@@ -1,5 +1,5 @@
 <?php
-require_once('stringCutterandRectifier.php');
+require_once('stringCutterAndRectifier.php');
 
 function fileHolder(){
     $fileName = "ipsum.txt";
