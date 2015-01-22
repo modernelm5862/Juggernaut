@@ -9,8 +9,6 @@ function detectLength($messageDetect)
 function cuttingToLength($messageCutter, $limitCutter)
 {
     $messageLength = detectLength($messageCutter);
-//    echo $messageLength;
-//    echo PHP_EOL;
 
     if ($messageLength > $limitCutter){
         $cutMessage = substr($messageCutter, 0, $limitCutter);
@@ -38,5 +36,3 @@ function correctingWord ($messageCorrect, $limit)
 
     return $finalMessage;
 }
-
-correctingWord($message, $limit);
